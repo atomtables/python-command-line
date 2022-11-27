@@ -12,6 +12,7 @@ v = args.verbose
 platform = platform.system()
 username = getpass.getuser()
 if platform == "Windows":
+    os.system("@echo off")
     os.system("color")
 
 # note to self: print("\033[1;32;40m Bright Green  \n")
@@ -21,7 +22,7 @@ if v == True:
     print("\033[0;37;42m You are running python-command-line in debug mode. \033[0m")
     print("\033[0;32;40m version 0.0.1 alpha \033[0m")
 print("Running on python " + python_version());
-print("\033[1;31;40m welcome to PYSH \033[0m")
+print("\033[1;32;40mwelcome to PYSH \033[0m")
 
 
 command = input(f"{username}: PYSH >> ")
@@ -31,10 +32,14 @@ for file in os.listdir(f"{os.getcwd()}/commands"):
         if file.find(command) != -1:
             command += ".main()"
             exec(command)
+            if getattr(command.value, "end_code") == 0:
+                if v == True:
+                    print("\033[0;37;42m successfully ran command:  \033[0m")
+                exit(0)
+            else:
+                print("\033[0;37;41m command was not completed correctly, killing program \033[0m")
         else:
             print("\033[0;37;41m command was not found, killing program \033[0m")
             exit(-1)
 
-print("\033[0;37;42m successfully ran command: ending program \033[0m")
-exit(0)
 

@@ -10,3 +10,5 @@ also i feel like stressing myself out over every single detail
 
 
 made by adithv08 in 2022/23
+
+ps. going to change to nodejs because of a lack of being able to modify the elements i need to in the code. may revisit this in the future tho
